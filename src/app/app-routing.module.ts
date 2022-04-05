@@ -1,7 +1,60 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
+import { LanguagesComponent } from './admin/languages/languages.component';
+import { ListUsersComponent } from './admin/list-users/list-users.component';
+import { MissionsComponent } from './admin/missions/missions.component';
+import { ProfileAdminComponent } from './admin/profile-admin/profile-admin.component';
+import { ReviewsComponent } from './admin/reviews/reviews.component';
+import { AddMissionComponent } from './client/add-mission/add-mission.component';
+import { DashboardClientComponent } from './client/dashboard-client/dashboard-client.component';
+import { MissionsClientComponent } from './client/missions-client/missions-client.component';
+import { ProfilClientComponent } from './client/profil-client/profil-client.component';
+import { ProfilFreelancerComponent } from './freelancer/profil-freelancer/profil-freelancer.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './services/auth.guard';
 
-const routes: Routes = [];
+import { AboutComponent } from './users/about/about.component';
+import { ContactComponent } from './users/contact/contact.component';
+import { FindFreelancerComponent } from './users/find-freelancer/find-freelancer.component';
+import { FindProjectComponent } from './users/find-project/find-project.component';
+import { HomeComponent } from './users/home/home.component';
+
+const routes: Routes = [
+  {path:'',  component : HomeComponent},
+  {path:'freelancer' , component:FindFreelancerComponent},
+  {path:'project' , component:FindProjectComponent},
+  {path:'about' , component:AboutComponent},
+  {path:'contact' , component:ContactComponent} ,
+
+  { path : 'register' , component:RegisterComponent } ,
+  {path:'login' , component:LoginComponent } ,
+
+  {path:'dashboard'    , component:DashboardAdminComponent } ,
+  { path : 'profil-admin' , component:ProfileAdminComponent  },
+  { path : 'addcategory' , canActivate:[AuthGuard]    ,component:AddCategoryComponent} ,
+  { path : 'categories'  , component : CategoriesComponent} ,
+  { path : 'missions' , canActivate:[AuthGuard]   ,component : MissionsComponent} ,
+  { path : 'languages' , canActivate:[AuthGuard]   ,component : LanguagesComponent} ,
+  {path:'allusers'  ,canActivate:[AuthGuard] , component:ListUsersComponent} ,
+  {path:'allreviews' ,canActivate:[AuthGuard]   ,component:ReviewsComponent} ,
+  
+  {path:'dashboardClient'    , component:DashboardClientComponent } ,
+  { path : 'profil-client'   , component:ProfilClientComponent  },
+  {path:'addMission' ,canActivate:[AuthGuard]   ,component:AddMissionComponent} ,
+  {path:'missionsClient'  ,canActivate:[AuthGuard] , component:MissionsClientComponent} ,
+
+
+
+  { path : 'profil-freelancer'   , component:ProfilFreelancerComponent  } , 
+
+
+
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
