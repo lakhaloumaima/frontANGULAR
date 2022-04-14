@@ -9,13 +9,14 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor(public usersService:UsersService, public router:Router) { }
+  constructor(private usersService:UsersService, private router:Router) { }
 
   ngOnInit(): void {
-  
+    
   }
   logout(){
   
+   // localStorage.clear();
     this.usersService.logout();
     this.router.navigate(['/login']);
    

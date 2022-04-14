@@ -1,1 +1,87 @@
-<p>add-mission works!</p>
+<div id="wrapper">
+    <app-sidebarclient></app-sidebarclient>
+       <div id="content-wrapper" class="d-flex flex-column">
+       
+           <!-- Main Content -->
+           <div id="content">
+            <app-navbarclient></app-navbarclient>
+               <!-- Topbar -->
+           
+               
+               <!-- End of Topbar -->
+     
+               <!-- Begin Page Content -->
+                    <!-- Begin Page Content -->
+
+                    <div class="container">
+                        <div class="row">
+                          <div class="col">
+                            <div class="jumbotron">
+                                <h1 class="display-4">Create Mission </h1>
+                                <a class="btn btn-success" routerLink="/missions-client"> all missions </a>
+                               </div>
+                          </div>
+                      
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col">
+                          <form  [formGroup]="addmissionn" #f="ngForm" (ngSubmit)="addmission (f); f.reset()" >
+                           
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">Title  </label>
+                                  <input type="text" name="title" formControlName="title" class="form-control" ngModel   required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">Description  </label>
+                                  <input type="text" name="description" formControlName="description" class="form-control" ngModel   required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">Duration  </label>
+                                  <input type="text" name="duration" formControlName="duration" class="form-control" ngModel   required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">BeginingDate  </label>
+                                  <input type="date" name="beginingDate" formControlName="beginingDate" class="form-control" ngModel   required>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">Budget  </label>
+                                  <input type="text" name="budget" formControlName="budget" class="form-control" ngModel   required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1">Category  </label>
+                                  <select class="form-control" id="exampleFormControlSelect1"   ngModel  >
+                                      <option *ngFor=" let item of dataArray "  value="item.id"   >   {{item.name}}   </option>
+                                  </select>
+                                </div>
+                              
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput2">Language   </label>
+                                  <select class="form-control" id="exampleFormControlSelect2"   ngModel  >
+                                      <option *ngFor=" let item of dataArrayy "  value="item.id"   >   {{item.name}}   </option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                      
+                                    <button  [hidden]="submitted" class="btn btn-danger" type="submit">save</button>
+                                </div>
+                                <div class="alert alert-danger" [hidden]="!submitted" role="alert"> 
+                                  Your mission has been successfully created. 
+                                  <a routerLink="/missions-client" class="alert-link" > View all missions </a>
+                                </div>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      
+
+               
+  <!-- End of Page Wrapper -->
+  
+  <!-- Scroll to Top Button-->
+
+  
+  <!-- Logout Modal-->
+ 
