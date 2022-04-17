@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   public connecte : boolean = false ; 
-  logged_in : boolean = true ; 
+  logged_in : boolean = false ; 
   
   constructor(private http : HttpClient , public router: Router ) {
 
@@ -20,6 +20,7 @@ export class UsersService {
 
 
   login(data:any): Observable<any> {
+    this.logged_in = true ;
     this.connecte = true;
     return this.http.post(environment.urlBackend + 'sessions/', data);
   }
@@ -69,7 +70,7 @@ export class UsersService {
     }
     
     getAllLanguages () {
-      return this.http.get(`${environment.urlBackend}`+'languages/')
+      return this.http.get<any>(`${environment.urlBackend}`+'languages/')
     }
   
     getOneLanguage (id:any) {    
@@ -104,7 +105,10 @@ export class UsersService {
     updateprofilclient (id:string,newprofile:any){
       return this.http.patch(environment.urlBackend+'updateclient/' + id , newprofile )
     }
-
+    
+    freelancerhomedata(id:any){
+      return this.http.get(`${environment.urlBackend}`+'freelancerdata/' + id)
+    }
     
     ////////////////// missions 
     addMission (profile:any) {
@@ -133,6 +137,35 @@ export class UsersService {
 
     getmissionbyfreelancer (freelancer_id : any) {
       return this.http.get(`${environment.urlBackend}`+'getmissionbyfreelancer/' + freelancer_id )
+    }
+
+    getmissionbycategory (category_id : any) {
+      return this.http.get(`${environment.urlBackend}`+'getmissionbycategory/' + category_id )
+    }
+
+    getmissionbylanguage (language_id : any) {
+      return this.http.get(`${environment.urlBackend}`+'getmissionbylanguage/' + language_id )
+    }
+
+    getmissionbybudget (budget : any) {
+      return this.http.get(`${environment.urlBackend}`+'getmissionbybudget/' + budget )
+    }
+
+    getrequestbyfreelancer (freelancer_id : any) {
+      return this.http.get(`${environment.urlBackend}`+'getrequestbyfreelancer/' + freelancer_id )
+    }
+    
+    getrequestbyclient (client_id : any) {
+      return this.http.get(`${environment.urlBackend}`+'getrequestbyclient/' + client_id )
+    }
+
+    deleteRequest(id:any) {
+      return this.http.delete(environment.urlBackend+'requests/' + id )
+    }
+
+      
+    updateRequest (id:string,newdata:any) {
+      return this.http.patch(environment.urlBackend+'requests/' + id , newdata )
     }
 
 //***********************countall api***********************/
@@ -174,7 +207,10 @@ export class UsersService {
       return this.http.patch(environment.urlBackend+'educations/' + id , newdata )
     }
 
-
+//////////////////**************************  requests api ************************************//////////////
+    addRequest(data:any){
+      return this.http.post(environment.urlBackend+'requests/' , data) ;
+    }
 
 
 
